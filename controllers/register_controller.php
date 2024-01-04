@@ -13,8 +13,16 @@ if (isset($_POST['register_btn'])) {
     $password = $_POST['password'];
 
     try {
+        sendMail($email, $username, 'Welcome to Alpha', 'Welcome to Alpha <3'); // Checking if valid email
+    } catch (\PHPMailer\PHPMailer\Exception $e) {
+        header('location: index.php?page=register');
+        $_SESSION['gmail'] = false;
+        exit();
+    }
+
+    try {
         $user = User::register($username, $email, $password);
-        if (isset($user) && $user){
+        if ($user){
             header('location: index.php?page=login');
         }
     } catch (Exception $e) {

@@ -34,15 +34,15 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 // fetch users
 const users_section = document.querySelector('#users_section');
 
-fetch('https://jsonplaceholder.typicode.com/users',{
+fetch('https://jsonplaceholder.typicode.com/users', {
     headers: {'Content-Type': 'application/json'},
     method: 'GET'
 })
-.then(response => response.json())
-.then(data => {
-    console.log(data);
-    data.forEach(user => {
-        users_section.innerHTML += `
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+        data.forEach(user => {
+            users_section.innerHTML += `
             <div class="card min-w-sm border rounded-lg bg-gray-700 text-gray-50 shadow-xl min-w-max my-20">
         <!---->
         <div class="w-full card__media"><img src="https://image.freepik.com/free-vector/abstract-binary-code-techno-background_1048-12836.jpg" class="h-48 w-96" alt="cover"></div>
@@ -62,12 +62,35 @@ fetch('https://jsonplaceholder.typicode.com/users',{
                     </div>
                     <p class="text-sm text-purple-400 ">Company : ${user.company.name}</p>
                     <p class="cursor-pointer text-blue-300 underline hover:opacity-40">${user.website}</p>
-                    <p class="italic text-gray-300" style="font-size: 10px">${'street : ' + user.address.street +', suite : '+ user.address.suite + ', city : ' + user.address.city + ', zipcode : ' + user.address.zipcode}</p>
+                    <p class="italic text-gray-300" style="font-size: 10px">${'street : ' + user.address.street + ', suite : ' + user.address.suite + ', city : ' + user.address.city + ', zipcode : ' + user.address.zipcode}</p>
                 </div>
             </div>
         </div>
         <!---->
     </div>
         `;
+        })
+    });
+
+// reset password section
+
+const pwd_reset_btn = document.querySelector('#pwd_reset_btn');
+
+pwd_reset_btn.addEventListener('click', ()=>{
+    const email_pwd_reset = document.querySelector('#email_pwd_reset');
+    fetch('index.php?page=pwd-reset', {
+        headers: {'Content-Type': 'application/json'},
+        method: 'POST',
+        body: JSON.stringify({email: email_pwd_reset.value})
     })
+        .then(response => response.text())
+        .then(data => {
+            console.log(data);
+            if (data === true) {
+                email_pwd_reset.value = '';
+                email_pwd_reset.placeholder = 'check your email';
+            } else {
+                email_pwd_reset.innerHTML = 'account does not exist'
+            }
+        });
 })

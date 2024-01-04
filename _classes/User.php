@@ -54,7 +54,7 @@ class User
     /**
      * @throws Exception
      */
-    static function register($username, $email, $password)
+    static function register($username, $email, $password): bool // ": bool" === function's return type
     {
         global $db;
 
@@ -84,6 +84,9 @@ class User
     }
 
 
+    /**
+     * @throws Exception
+     */
     static function checkIfUserExist($email)
     {
         global $db;
@@ -120,25 +123,5 @@ class User
         }
     }
 
-
-    static function block($blocker, $blocked_user)
-    {
-        global $db;
-
-        $query = "insert into block(blocker, blocked_user) values (?, ?)";
-
-        $stm = $db->prepare($query);
-        $stm->bind_param('ii', $blocker,$blocked_user);
-
-        try {
-            $execution = $stm->execute();
-            if (!$execution) {
-                throw new Exception($stm->error);
-            }
-        } catch (Exception $e) {
-            return $e->getMessage();
-        }
-        return true;
-    }
 
 }
