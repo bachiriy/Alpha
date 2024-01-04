@@ -8,8 +8,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title><?= ucfirst($page) ?></title>
-    <?php if($page === 'login' || $page === 'register') { ?><link rel="stylesheet" href="<?= PATH ?>assets/css/register.css"> <?php } else { ?>
-    <link rel="stylesheet" href="<?= PATH . 'assets/css/' . $page ?>"><?php } ?>
+    <?php if($page === 'login' || $page === 'register') { ?><link rel="stylesheet" href="<?= PATH ?>assets/css/login_&_register.css"> <?php } ?>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 
 </head>
@@ -79,7 +78,5 @@
         });
     </script>
     <script src="<?= PATH ?>assets/js/main.js"></script>
-    <script src="<?= PATH ?>assets/js/home_requests.js"></script>
-    <script src="<?= PATH ?>assets/js/friends.js"></script>
 </body>
 </html>
