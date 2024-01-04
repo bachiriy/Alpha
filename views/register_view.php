@@ -1,7 +1,7 @@
 <!-- component -->
 <div class="h-screen md:flex">
     <div
-            class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-blue-800 to-purple-700 i justify-around items-center hidden">
+            class="relative overflow-hidden md:flex w-1/2 bg-gradient-to-tr from-green-800 to-blue-700 i justify-around items-center hidden">
         <div>
             <h1 class="text-white font-bold text-4xl font-sans">Alpha</h1>
             <p class="text-white mt-1">The most popular peer to peer lending at SEA</p>
@@ -41,7 +41,7 @@
                 </svg>
                 <input class="pl-2 outline-none border-none" type="text" name="password" id="" placeholder="Password" />
             </div>
-            <button type="submit" name="register_btn" class="hover:opacity-90 block w-full bg-indigo-600 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
+            <button type="submit" name="register_btn" class="hover:opacity-90 block w-full bg-blue-600 bg-gradient-to-l from-green-500 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Register</button>
             <span style="font-size: 12px" class="text-sm ml-2 hover:text-green-500 cursor-pointer mx-1" onclick="window.location.href = 'index.php?page=login'">Already have Account?</span>
         </form>
     </div>
