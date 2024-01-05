@@ -28,15 +28,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <title>Password Reset</title>
                 </head>
                 <body>
-                    <h3>Dear {$user['username']},</h3>
-
-                    <p>You recently requested a password reset. Click the link below to create a new password:</p>
-
-                    <p><a href="{$url}">{$url}</a></p>
-
-                    <p>If you didn't make this request, please ignore this message.</p>
-
-                    <p>Best,<br>
+                <h3>Dear {$user['username']},</h3>
+                
+                <p>You recently requested a password reset. Click the link below to create a new password:</p>
+                
+                <p><a style="
+                padding: 10px; border-radius: 7px; background-color: #2ecc71; color: white; text-decoration: none;border-color: #008033; border-width: 2px; box-shadow: 0 0 10px #003d05;
+                " href="{$url}">Reset Your Password</a></p>
+                
+                <p>If you didn't make this request, please ignore this message.</p>
+                
+                <p>Best,<br>
                     Alpha Team</p>
                 </body>
                 </html>

@@ -6,7 +6,6 @@ fetch('https://jsonplaceholder.typicode.com/posts', {
 })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         data.forEach(post => {
             product_section.innerHTML += `
                 <div class="min-h-screen bg-gray-100 flex justify-center items-center m-2">
@@ -40,7 +39,6 @@ fetch('https://jsonplaceholder.typicode.com/users', {
 })
     .then(response => response.json())
     .then(data => {
-        console.log(data);
         data.forEach(user => {
             users_section.innerHTML += `
             <div class="card min-w-sm border rounded-lg bg-gray-700 text-gray-50 shadow-xl min-w-max my-20">
@@ -75,22 +73,28 @@ fetch('https://jsonplaceholder.typicode.com/users', {
 // reset password section
 
 const pwd_reset_btn = document.querySelector('#pwd_reset_btn');
+const messages = document.querySelector('#messages');
 
 pwd_reset_btn.addEventListener('click', ()=>{
     const email_pwd_reset = document.querySelector('#email_pwd_reset');
-    fetch('index.php?page=pwd-reset', {
-        headers: {'Content-Type': 'application/json'},
-        method: 'POST',
-        body: JSON.stringify({email: email_pwd_reset.value})
-    })
-        .then(response => response.text())
-        .then(data => {
-            console.log(data);
-            if (data === true) {
-                email_pwd_reset.value = '';
-                email_pwd_reset.placeholder = 'check your email';
-            } else {
-                email_pwd_reset.innerHTML = 'account does not exist'
-            }
-        });
+    if (email_pwd_reset.value !== '') {
+        fetch('index.php?page=pwd-reset', {
+            headers: {'Content-Type': 'application/json'},
+            method: 'POST',
+            body: JSON.stringify({email: email_pwd_reset.value})
+        })
+            .then(response => response.text())
+            .then(data => {
+                console.log(data);
+                if (data) {
+                    email_pwd_reset.value = '';
+                    messages.style.color = 'green';
+                    messages.innerHTML = 'check your email';
+                } else {
+                    messages.innerHTML = 'account does not exist'
+                }
+            });
+    } else {
+        messages.innerHTML = 'must enter an email';
+    }
 })

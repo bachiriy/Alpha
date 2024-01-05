@@ -35,7 +35,7 @@ class User
         return $result->fetch_all(MYSQLI_ASSOC);
     }
 
-    function edit()
+    function edit(): bool
     {
         global $db;
         $query = "UPDATE users SET username = ?, email = ?, password = ?, image = ? WHERE user_id = ?";

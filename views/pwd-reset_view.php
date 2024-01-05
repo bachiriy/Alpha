@@ -14,6 +14,7 @@
     </div>
     <div class="flex md:w-1/2 justify-center py-10 items-center bg-white">
         <div class="bg-white">
+            <p class="text-sm text-red-400" id="messages"></p>
             <h1 class="text-gray-800 font-bold text-2xl mb-1">Forgot Your Password?</h1>
             <p class="text-sm font-normal text-gray-600 mb-7">We get it, stuff happens. Just enter your email address <br> below and we'll send you a link to reset your password!</p>
             <div class="flex items-center border-2 py-2 px-3 rounded-2xl mb-4">
