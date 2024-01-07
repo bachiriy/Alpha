@@ -78,5 +78,6 @@
         });
     </script>
     <script src="<?= PATH ?>assets/js/main.js"></script>
+    <script src="<?= PATH ?>assets/js/DOM.js"></script>
 </body>
 </html>

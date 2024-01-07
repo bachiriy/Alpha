@@ -25,7 +25,7 @@
                 </svg>
                 <input class="pl-2 outline-none border-none" type="email" name="email" id="email_pwd_reset" placeholder="Email Address" />
             </div>
-            <button type="submit" id="pwd_reset_btn" name="pwd_reset_btn" class="hover:opacity-90 block w-full bg-red-700 bg-gradient-to-r from-indigo-700 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Reset Password</button>
+            <button type="submit" onclick="resetPwd()" id="pwd_reset_btn" name="pwd_reset_btn" class="hover:opacity-90 block w-full bg-red-700 bg-gradient-to-r from-indigo-700 mt-4 py-2 rounded-2xl text-white font-semibold mb-2">Reset Password</button>
             <span style="font-size: 12px" class="text-sm ml-2 hover:text-blue-500 cursor-pointer mx-2" onclick="window.location.href = 'index.php?page=login'">Have Account? Login! </span> |
             <span style="font-size: 12px" class="text-sm ml-2 hover:text-green-500 cursor-pointer mx-1" onclick="window.location.href = 'index.php?page=register'">Create Account?</span>
         </div>
