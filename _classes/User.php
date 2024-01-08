@@ -28,7 +28,7 @@ class User
         }
     }
 
-    static function getAll()
+    static function getAll(): array
     {
         global $db;
         $result = $db->query("SELECT * FROM users");

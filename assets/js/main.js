@@ -184,14 +184,119 @@ function addProduct(){
                 return response.json();
             })
             .then(data => {
-                console.log('POST request successful:', data);
                 productTitle.value = '';
                 productBody.value = '';
-                alert('added success');
+                alert('Product Added success');
+                addNtf();
+                getNtfs();
+                notReadNtfs();
             })
             .catch(error => console.error('POST request failed:', error));
-
     } else {
         alert('must fill both inputs');
     }
+}
+// add notification function
+
+function addNtf() {
+    fetch('index.php?page=dashboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({message: 'New Product', type: 'add'}),
+    })
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+        .then(data => {
+        })
+        .catch(error => console.error(error));
+}
+
+// get notifications
+function getNtfs() {
+    let ntfs_section = document.querySelector('#display_ntfs_here');
+    ntfs_section.innerHTML = '';
+    fetch('index.php?page=dashboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({type: 'get'}),
+    })
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+        .then(data => {
+            data.forEach(ntf => {
+                ntfs_section.innerHTML += `
+                <div class="flex justify-between h-10 border border-blakc rounded-lg">
+                    <p><span class="text-blue-600">${ntf.message}</span> <span style="font-size: 12px" class="font-bold">by ${ntf.username}</span>  <span style="font-size: 10px" class="text-gray-500 underline">at ${ntf.created_at}</span></p>
+                    <button onclick="deleteNtf(${ntf.id})" class="p-2 bg-gray-600 text-white font-bold hover:opacity-70">X</button>
+                </div>
+                `;
+            })
+        })
+}
+
+getNtfs();
+// delete notification
+function deleteNtf(id) {
+    fetch('index.php?page=dashboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ID: id, type: 'delete'}),
+    })
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+    getNtfs();
+}
+
+// get not read ntfs count
+function notReadNtfs(){
+    let ntfs_count = document.querySelector('#ntfs_count');
+    ntfs_count.innerHTML = '';
+    fetch('index.php?page=dashboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({type: 'notRead'}),
+    })
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+        .then(data => {
+            ntfs_count.innerHTML = data.ntfs_not_read;
+        })
+}
+
+notReadNtfs();
+
+// make ntfs read function
+
+function readNtfs() {
+    fetch('index.php?page=dashboard', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({message: 'New Product', type: 'read'}),
+    })
+        .then(response => {
+            console.log(response.status);
+            return response.json();
+        })
+        .then(data => {
+            notReadNtfs();
+        })
+        .catch(error => console.error(error));
 }

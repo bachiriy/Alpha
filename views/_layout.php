@@ -20,6 +20,24 @@
         <nav class="bg-white border-gray-200 dark:bg-gray-900 fixed w-full z-50 bg-blue-900 bg-gradient-to-l from-indigo-500">
             <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
                 <img src="<?= PATH . 'assets/img/logo.png' ?>" alt="" class="h-10">
+
+                <div class="relative">
+                    <!-- Notification Icon -->
+                    <div onclick="openNForm()" class="relative hover:bg-blue-500 cursor-pointer p-4 rounded-full">
+                        <svg class="h-6 w-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                        <div id="ntfs_count" class="absolute top-2 left-4 bg-red-500 text-white rounded-full p-1 text-xs"></div>
+                    </div>
+
+                    <!-- Notification Box -->
+                    <div style="display: none;" id="notification_form" class="absolute right-0 mt-2 w-96 h-64 p-4 bg-white border rounded shadow-md overflow-y-auto">
+                        <div id="display_ntfs_here">
+
+                        </div>
+                        <!-- display notification here -->
+                    </div>
+                </div>
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
                     <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                         <img class="w-8 h-8 rounded-full border border-black" src="<?= PATH . 'assets/img/' . $user->image ?>" alt="user photo">
@@ -76,6 +94,12 @@
 
             });
         });
+
+        function openNForm() {
+            readNtfs();
+            let form = document.querySelector('#notification_form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
     </script>
     <script src="<?= PATH ?>assets/js/main.js"></script>
     <script src="<?= PATH ?>assets/js/DOM.js"></script>
