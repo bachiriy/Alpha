@@ -102,5 +102,4 @@ Alpha/
 - XENO Phone Brand
 
 ## Contact
-[med.el.bachiri.00@gmail.com]
-```
+med.el.bachiri.00@gmail.com
